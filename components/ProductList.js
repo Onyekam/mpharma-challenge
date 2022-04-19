@@ -1,8 +1,20 @@
-import articleStyles from '../styles/Product.module.css'
+import productStyles from '../styles/Product.module.css'
+import ProductItem from './ProductItem'
+import {useState} from 'react'
 
-const ProductList = () => {
+const ProductList = ({products}) => {
+   
+    //const localProducts = products;
+    const [productsState, setProductsState] = useState(products.products);
+   
+    console.log({productsState});
   return (
-    <div>ProductList</div>
+    //  <div></div>
+     <div className={productStyles.grid}>
+         {productsState.map((product) => (
+         <ProductItem product={product} key={product.id}/>
+       ))}
+    </div>
   )
 }
 

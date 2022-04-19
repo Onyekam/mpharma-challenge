@@ -1,15 +1,16 @@
 import Head from 'next/head'
 import Image from 'next/image'
-
+import ProductList from '../components/ProductList';
 
 export default function Home({products}) {
-  console.log(products);
   return (
     <div>
       <Head>
         <title>Home</title>
       </Head>
       <h1>Welcome to MPharma</h1>
+
+      <ProductList products={products} />
     </div>
   )
 }
