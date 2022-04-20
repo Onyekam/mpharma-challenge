@@ -1,28 +1,21 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import ProductList from '../components/ProductList';
 import { useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import { getProducts } from '../state/slices/productSlice';
-import { wrapper } from '../state/store';
 export default function Home() {
   const dispatch = useDispatch();
-  // const products = useSelector(state => state.products.products);
   const isLoading = useSelector(state => state.products.isLoading);
   const isPresent = useSelector(state => state.products.isPresent);
 
-  // const count = useSelector((state) => state.products.value);
-  // const products2 = useSelector((state) => state.products.products);
-
-  {isPresent ? '' : 
-  useEffect(() => {
+useEffect(() => {
+  if(isPresent) {
+  } else {
     dispatch(getProducts());
-  }, [dispatch]);
-}
+  }
+}, []);
 
-  
-  // console.log(products['products'])
-  return (
+return (
     <div>
       <Head>
         <title>Home</title>
