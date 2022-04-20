@@ -1,9 +1,10 @@
 import {useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import {increment} from "../state/slices/productSlice";
 import { addProduct } from '../state/slices/productSlice';
+import { useRouter } from 'next/router';
 const NewProductForm = () => {
     const dispatch = useDispatch();
+    const router = useRouter();
     const {products} = useSelector(state => state.products.products);
     const [productName, setProductName] = useState('');
     const [productPrice, setProductPrice] = useState('');
@@ -18,11 +19,9 @@ const NewProductForm = () => {
     
     const submitHandler = (event) => {
          event.preventDefault();    
-        console.log(productName+' + '+productPrice);
-            
             dispatch(addProduct(createNewProductObject(productName, productPrice, products)));
-            
             event.preventDefault();
+            router.push('/');
            
     }
 
@@ -42,8 +41,6 @@ const NewProductForm = () => {
         }
         return newProduct;
     }
-
-  
     return (
     <div>
         <form onSubmit={submitHandler}>
@@ -59,13 +56,9 @@ const NewProductForm = () => {
             </label>
         </div>
          <div>
-            
                 <input type="submit" value="Add Product" />
-            
         </div>
         </form>
-       
-
     </div>
   )
 }

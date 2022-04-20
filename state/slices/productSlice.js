@@ -24,6 +24,18 @@ export const productSlice = createSlice({
         }, 
        removeProduct: (state, action) => {
            state.products.products = state.products.products.filter(product => product.name != action.payload);
+       },
+       editProduct: (state, action) => {
+            const removedProduct = state.products.products.splice(action.payload.id -1, 1, action.payload);
+            state.isPresent = true
+       },
+       editProductbackup: (state, action) => {
+        //    console.log(action.payload);
+           state.products.products = [...state.products.products, state.products.products.map(product => {
+            if (product.id == action.payload.id) {
+                return [{name: action.payload.name, prices: action.payload.prices}]
+               }
+           })];
        }
     },
     extraReducers: {
@@ -41,5 +53,5 @@ export const productSlice = createSlice({
     
 });
 
-export const {addProduct, removeProduct} = productSlice.actions;
+export const {addProduct, removeProduct, editProduct} = productSlice.actions;
 export default productSlice.reducer;

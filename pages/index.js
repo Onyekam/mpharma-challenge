@@ -17,7 +17,6 @@ export default function Home() {
   {isPresent ? '' : 
   useEffect(() => {
     dispatch(getProducts());
-    
   }, [dispatch]);
 }
 
