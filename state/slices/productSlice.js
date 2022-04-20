@@ -22,15 +22,9 @@ export const productSlice = createSlice({
             state.products.products = [...state.products.products, action.payload];
             state.isPresent = true
         }, 
-        increment: (state) => {
-            state.value += 1
-        },
-        decrement: (state) => {
-            state.value -= 1
-        },
-        incrementByAmount: (state, action) => {
-            state.value += action.payload
-        }
+       removeProduct: (state, action) => {
+           state.products.products = state.products.products.filter(product => product.name != action.payload);
+       }
     },
     extraReducers: {
         [getProducts.pending]: (state) => {
@@ -47,5 +41,5 @@ export const productSlice = createSlice({
     
 });
 
-export const {increment, decrement, incrementByAmount, addProduct} = productSlice.actions;
+export const {addProduct, removeProduct} = productSlice.actions;
 export default productSlice.reducer;
