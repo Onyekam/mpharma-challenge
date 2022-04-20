@@ -1,19 +1,24 @@
 import productStyles from '../styles/Product.module.css'
 import ProductItem from './ProductItem'
-import {useState} from 'react'
+import {useSelector, useDispatch} from 'react-redux';
 
-const ProductList = ({products}) => {
-   
+
+const ProductList = () => {
+    // const productList = products;
+    const {products} = useSelector(state => state.products.products);
+    const isLoading = useSelector(state => state.products.isLoading);
+    // const productList = products['products'];
     //const localProducts = products;
-    const [productsState, setProductsState] = useState(products.products);
+    // const [productsState, setProductsState] = useState(products.products);
    
-    console.log({productsState});
+  console.log(products);
   return (
     //  <div></div>
      <div className={productStyles.grid}>
-         {productsState.map((product) => (
+      {isLoading ? "Products Loading" : products.map((product) => (
          <ProductItem product={product} key={product.id}/>
-       ))}
+        ))}
+         
     </div>
   )
 }
