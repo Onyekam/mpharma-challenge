@@ -13,7 +13,7 @@ useEffect(() => {
   } else {
     dispatch(getProducts());
   }
-}, []);
+}, []dispatch);
 
 return (
     <div>
