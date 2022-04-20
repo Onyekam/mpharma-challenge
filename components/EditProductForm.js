@@ -23,7 +23,7 @@ const EditProductForm = ({product}) => {
     }
     
     const submitHandler = (event) => {
-        console.log(productName+' + '+productPrice);
+        
         dispatch(editProduct(editProductObject(productName, productPrice, product)));
         event.preventDefault();
         router.push('/');
